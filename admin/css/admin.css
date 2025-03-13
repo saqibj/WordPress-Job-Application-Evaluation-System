@@ -1,0 +1,35 @@
+/* Admin Dashboard Styles */
+.cjm-meta-field {
+    margin: 1em 0;
+    padding: 1em;
+    background: #f6f7f7;
+    border: 1px solid #ccd0d4;
+}
+
+.cjm-meta-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.cjm-meta-field input[type="text"],
+.cjm-meta-field textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 8px;
+}
+
+.widefat .column-status {
+    width: 100px;
+}
+
+.cjm-status-indicator {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.status-new { background: #f0f6fc; color: #2271b1; }
+.status-in_review { background: #fff8e5; color: #dba617; }
+.status-archived { background: #f0f0f1; color: #646970; }

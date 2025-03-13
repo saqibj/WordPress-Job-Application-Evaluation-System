@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Application Received</title>
+</head>
+<body>
+    <h1>New Job Application</h1>
+    <p>A new application has been submitted for:</p>
+    
+    <div class="application-details">
+        <p><strong>Position:</strong> {{ job_title }}</p>
+        <p><strong>Candidate:</strong> {{ candidate_name }}</p>
+        <p><strong>Email:</strong> {{ candidate_email }}</p>
+    </div>
+
+    <p>View application details: {{ admin_url }}</p>
+    
+    <footer>
+        <p>This is an automated message from {{ site_name }}</p>
+    </footer>
+</body>
+</html>

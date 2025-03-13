@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Received</title>
+</head>
+<body>
+    <h1>Thank You for Applying!</h1>
+    <p>Dear {{ candidate_name }},</p>
+    
+    <p>We've received your application for:</p>
+    <div class="position-details">
+        <p><strong>Position:</strong> {{ job_title }}</p>
+        <p><strong>Applied On:</strong> {{ application_date }}</p>
+    </div>
+
+    <p>Our team will review your application and contact you 
+    if your qualifications match our requirements.</p>
+
+    <footer>
+        <p>Best regards,<br>{{ site_name }} Team</p>
+    </footer>
+</body>
+</html>

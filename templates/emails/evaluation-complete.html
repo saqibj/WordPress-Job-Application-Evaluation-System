@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evaluation Completed</title>
+</head>
+<body>
+    <h1>Evaluation Summary</h1>
+    <p>An evaluation has been completed for:</p>
+    
+    <div class="details">
+        <p><strong>Candidate:</strong> {{ candidate_name }}</p>
+        <p><strong>Position:</strong> {{ job_title }}</p>
+        <p><strong>Average Score:</strong> {{ average_score }}/5</p>
+    </div>
+
+    <p>View full report: <a href="{{ report_url }}">{{ report_url }}</a></p>
+</body>
+</html>

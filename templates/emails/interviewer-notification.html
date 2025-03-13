@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Evaluation Assignment</title>
+</head>
+<body>
+    <h1>Evaluation Request</h1>
+    <p>You've been assigned to evaluate a candidate:</p>
+    
+    <div class="assignment-details">
+        <p><strong>Candidate:</strong> {{ candidate_name }}</p>
+        <p><strong>Position:</strong> {{ job_title }}</p>
+        <p><strong>Deadline:</strong> {{ deadline|date('F j, Y') }}</p>
+    </div>
+
+    <p>Access the evaluation dashboard: <a href="{{ dashboard_url }}">{{ dashboard_url }}</a></p>
+    
+    <footer>
+        <p>{{ site_name }} Hiring Team</p>
+    </footer>
+</body>
+</html>

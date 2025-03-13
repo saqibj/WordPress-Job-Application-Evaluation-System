@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Job Evaluation System">
+    <description>PHP_CodeSniffer ruleset for WordPress Job Evaluation System</description>
+
+    <!-- Include WordPress Coding Standards -->
+    <rule ref="WordPress"/>
+
+    <!-- Exclude some WordPress rules that are too strict -->
+    <rule ref="WordPress.WP.I18n">
+        <exclude name="WordPress.WP.I18n.MissingTranslatorsComment"/>
+    </rule>
+
+    <!-- Custom rules -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- Exclude some directories -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+
+    <!-- Include all PHP files -->
+    <file>.</file>
+</ruleset> 

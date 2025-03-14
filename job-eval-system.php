@@ -21,6 +21,7 @@ define('CJM_PLUGIN_VERSION', '1.0.1');
 define('CJM_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('CJM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CJM_TEMPLATE_PATH', CJM_PLUGIN_PATH . 'templates/');
+define('CJM_PLUGIN_FILE', __FILE__);
 
 // Register activation/deactivation hooks
 register_activation_hook(__FILE__, 'cjm_activate_plugin');

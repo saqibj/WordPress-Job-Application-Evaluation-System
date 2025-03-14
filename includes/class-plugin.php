@@ -19,9 +19,9 @@ final class Plugin
     {
         $this->load_dependencies();
         $this->init_components();
-        register_activation_hook(CJM_PLUGIN_FILE, [$this, 'activate']);
-        register_deactivation_hook(CJM_PLUGIN_FILE, [$this, 'deactivate']);
-        add_action('init', [$this, 'init_components']);
+        \register_activation_hook(\CJM_PLUGIN_FILE, [$this, 'activate']);
+        \register_deactivation_hook(\CJM_PLUGIN_FILE, [$this, 'deactivate']);
+        \add_action('init', [$this, 'init_components']);
     }
 
     private function load_dependencies()
@@ -60,7 +60,7 @@ final class Plugin
         require_once CJM_PLUGIN_PATH . 'includes/reports/class-reports.php';
 
         // Admin
-        if (is_admin()) {
+        if (\is_admin()) {
             require_once CJM_PLUGIN_PATH . 'includes/admin/class-admin-menu.php';
         }
 
@@ -91,7 +91,7 @@ final class Plugin
         new CLI\CLI();
 
         // Admin Components
-        if (is_admin()) {
+        if (\is_admin()) {
             Admin\AdminMenu::init();
         }
 
@@ -102,7 +102,7 @@ final class Plugin
     public function run()
     {
         // Future hook point for extensions
-        do_action('cjm_plugin_loaded');
+        \do_action('cjm_plugin_loaded');
     }
 
     public function activate() {
@@ -116,7 +116,7 @@ final class Plugin
         $this->set_default_options();
         
         // Clear rewrite rules
-        flush_rewrite_rules();
+        \flush_rewrite_rules();
     }
 
     public function deactivate() {
@@ -124,14 +124,14 @@ final class Plugin
         // Only remove them on uninstall if needed
         
         // Clear rewrite rules
-        flush_rewrite_rules();
+        \flush_rewrite_rules();
     }
 
     private function create_roles() {
         // HR Manager Role
-        add_role(
+        \add_role(
             'hr_manager',
-            __('HR Manager', 'job-eval-system'),
+            \__('HR Manager', 'job-eval-system'),
             [
                 'read' => true,
                 'edit_posts' => true,
@@ -149,9 +149,9 @@ final class Plugin
         );
 
         // Interviewer Role
-        add_role(
+        \add_role(
             'interviewer',
-            __('Interviewer', 'job-eval-system'),
+            \__('Interviewer', 'job-eval-system'),
             [
                 'read' => true,
                 'upload_files' => true,
@@ -163,9 +163,9 @@ final class Plugin
         );
 
         // Applicant Role
-        add_role(
+        \add_role(
             'applicant',
-            __('Applicant', 'job-eval-system'),
+            \__('Applicant', 'job-eval-system'),
             [
                 'read' => true,
                 'upload_files' => true,
@@ -176,7 +176,7 @@ final class Plugin
         );
 
         // Add HR capabilities to administrator role
-        $admin = get_role('administrator');
+        $admin = \get_role('administrator');
         if ($admin) {
             $admin->add_cap('manage_job_posts');
             $admin->add_cap('view_applications');
@@ -192,16 +192,16 @@ final class Plugin
 
     private function set_default_options() {
         // Set default options if they don't exist
-        if (!get_option('cjm_resume_size_limit')) {
-            update_option('cjm_resume_size_limit', 2); // 2MB default
+        if (!\get_option('cjm_resume_size_limit')) {
+            \update_option('cjm_resume_size_limit', 2); // 2MB default
         }
         
-        if (!get_option('cjm_data_retention')) {
-            update_option('cjm_data_retention', 365); // 1 year default
+        if (!\get_option('cjm_data_retention')) {
+            \update_option('cjm_data_retention', 365); // 1 year default
         }
         
-        if (!get_option('cjm_testing_mode')) {
-            update_option('cjm_testing_mode', 0); // Testing mode disabled by default
+        if (!\get_option('cjm_testing_mode')) {
+            \update_option('cjm_testing_mode', 0); // Testing mode disabled by default
         }
     }
 
@@ -232,6 +232,6 @@ final class Plugin
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        \dbDelta($sql);
     }
 }

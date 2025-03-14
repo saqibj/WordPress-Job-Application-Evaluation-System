@@ -3,9 +3,7 @@
  * Database schema installation
  */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
+defined('ABSPATH') || exit;
 
 /**
  * Create custom database tables
@@ -13,44 +11,74 @@ if (!defined('ABSPATH')) {
 function cjm_create_database_tables() {
     global $wpdb;
     $charset_collate = $wpdb->get_charset_collate();
+
+    // Main Applications table
+    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_applications (
+        application_id bigint(20) NOT NULL AUTO_INCREMENT,
+        job_id bigint(20) NOT NULL,
+        user_id bigint(20) NOT NULL,
+        status varchar(20) NOT NULL DEFAULT 'new',
+        resume_path varchar(255) DEFAULT NULL,
+        created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (application_id),
+        KEY job_id (job_id),
+        KEY user_id (user_id),
+        KEY status (status)
+    ) $charset_collate;";
+
+    // Main Evaluations table
+    $sql .= "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_evaluations (
+        evaluation_id bigint(20) NOT NULL AUTO_INCREMENT,
+        application_id bigint(20) NOT NULL,
+        evaluator_id bigint(20) NOT NULL,
+        score decimal(3,2) DEFAULT NULL,
+        status varchar(20) NOT NULL DEFAULT 'draft',
+        recommendation varchar(50) DEFAULT NULL,
+        created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (evaluation_id),
+        KEY application_id (application_id),
+        KEY evaluator_id (evaluator_id),
+        KEY status (status),
+        CONSTRAINT fk_evaluation_application 
+            FOREIGN KEY (application_id) 
+            REFERENCES {$wpdb->prefix}cjm_applications(application_id) 
+            ON DELETE CASCADE
+    ) $charset_collate;";
+
+    // Applications Meta table
+    $sql .= "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_application_meta (
+        meta_id bigint(20) NOT NULL AUTO_INCREMENT,
+        application_id bigint(20) NOT NULL,
+        meta_key varchar(255) DEFAULT NULL,
+        meta_value longtext,
+        PRIMARY KEY (meta_id),
+        KEY application_id (application_id),
+        KEY meta_key (meta_key(191)),
+        CONSTRAINT fk_application_meta 
+            FOREIGN KEY (application_id) 
+            REFERENCES {$wpdb->prefix}cjm_applications(application_id) 
+            ON DELETE CASCADE
+    ) $charset_collate;";
+
+    // Evaluations Meta table
+    $sql .= "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_evaluation_meta (
+        meta_id bigint(20) NOT NULL AUTO_INCREMENT,
+        evaluation_id bigint(20) NOT NULL,
+        meta_key varchar(255) DEFAULT NULL,
+        meta_value longtext,
+        PRIMARY KEY (meta_id),
+        KEY evaluation_id (evaluation_id),
+        KEY meta_key (meta_key(191)),
+        CONSTRAINT fk_evaluation_meta 
+            FOREIGN KEY (evaluation_id) 
+            REFERENCES {$wpdb->prefix}cjm_evaluations(evaluation_id) 
+            ON DELETE CASCADE
+    ) $charset_collate;";
+
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-    // Applications Table
-    $applications_table = $wpdb->prefix . 'cjm_applications';
-    $applications_sql = "CREATE TABLE $applications_table (
-        application_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-        job_id BIGINT UNSIGNED NOT NULL,
-        candidate_name VARCHAR(255) NOT NULL,
-        candidate_email VARCHAR(100) NOT NULL,
-        resume_path VARCHAR(255) NOT NULL,
-        status ENUM('new', 'in_review', 'archived') NOT NULL DEFAULT 'new',
-        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        PRIMARY KEY  (application_id),
-        INDEX job_index (job_id),
-        INDEX status_index (status)
-    ) $charset_collate;";
-
-    // Evaluations Table
-    $evaluations_table = $wpdb->prefix . 'cjm_evaluations';
-    $evaluations_sql = "CREATE TABLE $evaluations_table (
-        evaluation_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-        application_id BIGINT UNSIGNED NOT NULL,
-        interviewer_id BIGINT UNSIGNED NOT NULL,
-        section ENUM('core', 'role_specific', 'behavioral') NOT NULL,
-        criterion VARCHAR(255) NOT NULL,
-        rating TINYINT UNSIGNED,
-        comments TEXT,
-        evaluated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY  (evaluation_id),
-        INDEX app_interviewer_index (application_id, interviewer_id),
-        INDEX criterion_index (criterion),
-        FOREIGN KEY (application_id) REFERENCES $applications_table(application_id) ON DELETE CASCADE
-    ) $charset_collate;";
-
-    // Execute SQL
-    dbDelta($applications_sql);
-    dbDelta($evaluations_sql);
+    \dbDelta($sql);
 
     // Log any errors
     if (!empty($wpdb->last_error)) {

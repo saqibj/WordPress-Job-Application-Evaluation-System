@@ -37,6 +37,7 @@ final class Plugin
         require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-jobs-shortcode.php';
         require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-application-form.php';
         require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-dashboard.php';
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-registration-form.php';
 
         // Security
         require_once CJM_PLUGIN_PATH . 'includes/security/class-sanitization.php';

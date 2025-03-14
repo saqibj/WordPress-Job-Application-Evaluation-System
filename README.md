@@ -8,7 +8,7 @@
 
 A complete recruitment management system for WordPress with job postings, candidate applications, and structured evaluations.
 
-📚 [Documentation](docs/) | 🐛 [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues)
+📚 [Documentation](docs/) | 📖 [User Manual](MANUAL.md) | 🐛 [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues)
 
 ## 🌟 Features
 

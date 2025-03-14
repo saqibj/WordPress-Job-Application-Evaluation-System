@@ -18,7 +18,7 @@ final class Plugin
     private function __construct()
     {
         $this->load_dependencies();
-        $this->init_components();
+        $this->init_core_components();
         \register_activation_hook(\CJM_PLUGIN_FILE, [$this, 'activate']);
         \register_deactivation_hook(\CJM_PLUGIN_FILE, [$this, 'deactivate']);
         \add_action('init', [$this, 'init_components']);
@@ -68,18 +68,15 @@ final class Plugin
         require_once CJM_PLUGIN_PATH . 'public/class-public-init.php';
     }
 
-    private function init_components()
+    /**
+     * Initialize core components that need to be loaded immediately
+     */
+    private function init_core_components()
     {
         // Post Types
         new PostTypes\Jobs();
         new PostTypes\Applications();
         new PostTypes\Evaluations();
-
-        // Shortcodes
-        new Shortcodes\JobsShortcode();
-        new Shortcodes\ApplicationForm();
-        new Shortcodes\Dashboard();
-        new Shortcodes\RegistrationForm();
 
         // Core Systems
         new TemplateLoader();
@@ -94,6 +91,18 @@ final class Plugin
         if (\is_admin()) {
             Admin\AdminMenu::init();
         }
+    }
+
+    /**
+     * Initialize components that need to be loaded on WordPress init
+     */
+    public function init_components()
+    {
+        // Shortcodes
+        new Shortcodes\JobsShortcode();
+        new Shortcodes\ApplicationForm();
+        new Shortcodes\Dashboard();
+        new Shortcodes\RegistrationForm();
 
         // Frontend
         new Public\PublicInit();

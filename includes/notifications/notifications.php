@@ -5,7 +5,17 @@ defined('ABSPATH') || exit;
 
 class Notifications
 {
-    public function init()
+    private static $instance;
+
+    public static function init()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         add_action('cjm_application_submitted', [$this, 'new_application_notification'], 10, 2);
         add_action('cjm_evaluation_completed', [$this, 'evaluation_complete_notification']);

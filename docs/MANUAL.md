@@ -41,6 +41,7 @@ This plugin transforms WordPress into a complete recruitment management system. 
    - **reCAPTCHA Keys** (required for application forms)  
    - **Resume Size Limit** (default: 2MB)  
    - **Data Retention Period** (default: 365 days)  
+   - **Default Country Code** (for phone number registration)
 
 ---
 
@@ -68,6 +69,7 @@ This plugin transforms WordPress into a complete recruitment management system. 
    - Click *Apply* on the job page  
    - Fill in:  
      - Name, email  
+     - Phone number (E.164 format with country code)  
      - Upload resume (PDF/DOCX only)  
      - Complete reCAPTCHA  
    - Receive confirmation email  
@@ -155,7 +157,7 @@ your-theme/company-jobs/
 ```  
 
 ### 3. Styling  
-Add CSS to your theme’s `style.css`:  
+Add CSS to your theme's `style.css`:  
 ```css  
 .cjm-job-listing {  
     border: 1px solid #eee;  

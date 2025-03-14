@@ -9,6 +9,7 @@
 - View applications under **Applications** menu
 - Filter by status: New/In Review/Archived
 - Assign interviewers via bulk actions
+- View applicant contact details including phone numbers
 
 ## Conducting Evaluations
 1. Interviewers access dashboard via `[cjm_dashboard]`
@@ -22,13 +23,17 @@
 1. Set reCAPTCHA keys in **Settings → Job System**
 2. Adjust data retention period (default: 365 days)
 3. Modify resume size limit (max 5MB)
+4. Set default country code for phone numbers
+5. Configure testing mode for development
 
 ## Shortcodes
 - `[cjm_jobs]`: Display job listings
 - `[cjm_apply job_id="123"]`: Application form
 - `[cjm_dashboard]`: Interviewer evaluation portal
+- `[cjm_registration_form]`: Applicant registration form with phone validation
 
 ## Reports
 - Export CSV data from HR dashboard
 - View candidate comparison charts
 - Track evaluation progress metrics
+- Access applicant contact information including phone numbers

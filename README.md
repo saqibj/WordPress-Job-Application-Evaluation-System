@@ -5,6 +5,7 @@
 [![WordPress Compatibility](https://img.shields.io/badge/WordPress-6.0%2B-blue)](https://wordpress.org/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-purple)](https://php.net/)
 [![Code Style](https://img.shields.io/badge/code%20style-WordPress-blue)](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
+[![Version](https://img.shields.io/badge/version-1.0.1-green)](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases)
 
 A complete recruitment management system for WordPress with job postings, candidate applications, and structured evaluations.
 

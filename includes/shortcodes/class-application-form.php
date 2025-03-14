@@ -32,7 +32,9 @@ class ApplicationForm
 
     public static function handle_submission()
     {
-        if (!isset($_POST['cjm_application_nonce']) return;
+        if (!isset($_POST['cjm_application_nonce'])) {
+            return;
+        }
         
         // Validation and processing logic
     }

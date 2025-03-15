@@ -199,6 +199,55 @@ final class Plugin
         }
     }
 
+    /**
+     * Create required plugin pages
+     */
+    private function create_plugin_pages($page_titles = []) {
+        $default_pages = [
+            'jobs' => [
+                'title' => isset($page_titles['jobs']) ? $page_titles['jobs'] : __('Job Listings', 'job-eval-system'),
+                'content' => '[cjm_jobs]',
+                'option_name' => 'cjm_jobs_page_id'
+            ],
+            'apply' => [
+                'title' => isset($page_titles['apply']) ? $page_titles['apply'] : __('Apply for Job', 'job-eval-system'),
+                'content' => '[cjm_apply]',
+                'option_name' => 'cjm_apply_page_id'
+            ],
+            'dashboard' => [
+                'title' => isset($page_titles['dashboard']) ? $page_titles['dashboard'] : __('Interviewer Dashboard', 'job-eval-system'),
+                'content' => '[cjm_dashboard]',
+                'option_name' => 'cjm_dashboard_page_id'
+            ],
+            'registration' => [
+                'title' => isset($page_titles['registration']) ? $page_titles['registration'] : __('Applicant Registration', 'job-eval-system'),
+                'content' => '[cjm_registration_form]',
+                'option_name' => 'cjm_registration_page_id'
+            ]
+        ];
+
+        foreach ($default_pages as $slug => $page_data) {
+            // Check if page already exists
+            $existing_page_id = \get_option($page_data['option_name']);
+            if ($existing_page_id && \get_post($existing_page_id)) {
+                continue;
+            }
+
+            // Create the page
+            $page_id = \wp_insert_post([
+                'post_title' => $page_data['title'],
+                'post_content' => $page_data['content'],
+                'post_status' => 'publish',
+                'post_type' => 'page',
+                'post_name' => $slug
+            ]);
+
+            if (!is_wp_error($page_id)) {
+                \update_option($page_data['option_name'], $page_id);
+            }
+        }
+    }
+
     private function set_default_options() {
         // Set default options if they don't exist
         if (!\get_option('cjm_resume_size_limit')) {

@@ -7,44 +7,93 @@
 [![Code Style](https://img.shields.io/badge/code%20style-WordPress-blue)](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
 [![Version](https://img.shields.io/badge/version-1.0.2-green)](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases)
 
-A complete recruitment management system for WordPress with job postings, candidate applications, and structured evaluations.
+**Version: 1.0.2**
 
-📚 [Documentation](docs/) | 📖 [User Manual](MANUAL.md) | 🐛 [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues)
+A comprehensive recruitment management system for WordPress that streamlines the entire hiring process from job posting to candidate evaluation.
+
+📚 [Documentation](docs/) | 📖 [User Manual](docs/MANUAL.md) | 🐛 [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues)
 
 ## 🌟 Features
 
-### Core Functionality
-- **Job Post Management** with rich-text editor
-- **Candidate Portal** with secure resume uploads (PDF/DOCX)
-- **Custom Evaluation Sheets** with scoring logic
-- **Role-Based Access Control** (HR/Interviewer/Applicant)
-- **CSV Exports** & automatic data retention
-- **reCAPTCHA Integration** & email notifications
+- **Automated Setup**
+  - Automatic page creation during activation
+  - Default settings configuration
+  - User role establishment
 
-### Advanced Features
-- **Custom Fields** for job posts
-- **Bulk Actions** for applications
-- **Email Templates** customization
-- **API Endpoints** for integration
-- **WP-CLI Commands** for management
-- **Multilingual Support**
+- **Job Management**
+  - Create and manage job postings
+  - Custom fields for job details
+  - Organized job listing page
 
-## 🚀 Quick Installation
+- **Application System**
+  - User-friendly application forms
+  - Secure resume uploads
+  - Phone number validation with country codes
+  - Registration system with E.164 format support
 
-### Requirements
-- WordPress 6.0 or higher
-- PHP 7.4 or higher
-- MySQL 5.6 or higher
+- **Evaluation Process**
+  - Structured evaluation forms
+  - Scoring system
+  - Interviewer dashboard
+  - Bulk actions support
 
-### Installation Steps
-1. Download the [latest release](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases)
-2. Install via WordPress Admin → Plugins → Add New → Upload
-3. Activate and configure:
-   ```markdown
-   - Create page with `[cjm_jobs]` shortcode
-   - Set reCAPTCHA keys in plugin settings
-   - Assign interviewer roles to users
-   ```
+- **Administration**
+  - Centralized admin menu
+  - Page management interface
+  - Customizable settings
+  - Testing mode for development
+
+## 🚀 Quick Start
+
+1. Upload and activate the plugin
+2. Plugin automatically creates required pages:
+   - Jobs Listing
+   - Application Form
+   - Interviewer Dashboard
+   - Registration Page
+3. Configure settings in Job Applications → Settings
+4. Start creating job postings!
+
+## ⚙️ Configuration
+
+Access all settings via **Job Applications → Settings**:
+
+- Resume size limit
+- Data retention period
+- Testing mode toggle
+- Page management
+- User roles and permissions
+
+## 📖 Documentation
+
+- [User Manual](docs/MANUAL.md)
+- [User Guide](docs/user-guide.md)
+- [Changelog](CHANGELOG.md)
+
+## 🔒 Security
+
+- Secure file uploads
+- Role-based access control
+- Input validation and sanitization
+- Phone number format validation
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+## 📝 License
+
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Saqib Jawaid** - *Initial work* - [saqibj](https://github.com/saqibj)
+
+## 🙏 Acknowledgments
+
+- WordPress Plugin Development Team
+- Contributors and testers
+- Open source community
 
 ## 🛠️ Usage
 
@@ -199,33 +248,3 @@ This project follows WordPress Coding Standards. To maintain code quality:
 ```bash
 composer require --dev squizlabs/php_codesniffer wp-coding-standards/wpcs
 ```
-
-2. Configure PHP_CodeSniffer:
-```bash
-# Set WordPress Coding Standards as default
-phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
-```
-
-3. Run code style checks:
-```bash
-# Check code style
-composer check-style
-
-# Fix code style issues
-composer fix-style
-```
-
-## 📜 License
-
-GNU GPLv3 © 2024 [Saqib Jawaid](https://github.com/saqibj). See [LICENSE](LICENSE) for details.
-
-## 📝 Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for a list of all changes.
-
----
-
-**Need Help?**  
-[Open a GitHub Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues) | [Read Documentation](docs/) | [Join Discord](https://discord.gg/example)
-```
-

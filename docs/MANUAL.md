@@ -32,18 +32,26 @@ This plugin transforms WordPress into a complete recruitment management system. 
 ### 1. Installation  
 1. **Install Plugin**: Upload via *Plugins → Add New → Upload*  
 2. **Activate**: Activate the plugin  
-3. **Create Pages**:  
-   - *Jobs Page*: Add `[cjm_jobs]` shortcode  
-   - *Application Page*: Add `[cjm_apply]` shortcode  
-   - *Interviewer Dashboard*: Add `[cjm_dashboard]` shortcode  
+   - Required pages are automatically created during activation
+   - Default settings are configured automatically
 
 ### 2. Configure Settings  
 1. Navigate to **Job Applications → Settings**  
-2. Configure:  
-   - **reCAPTCHA Keys** (required for application forms)  
+2. Configure General Settings:  
    - **Resume Size Limit** (default: 2MB)  
    - **Data Retention Period** (default: 365 days)  
-   - **Default Country Code** (for phone number registration)
+   - **Testing Mode** (disables reCAPTCHA for development)
+
+### 3. Manage Plugin Pages
+1. Go to **Job Applications → Settings → Plugin Pages**
+2. View and manage automatically created pages:
+   - **Jobs Page**: Lists all job postings (`[cjm_jobs]`)
+   - **Apply Page**: Application form (`[cjm_apply]`)
+   - **Dashboard Page**: Interviewer portal (`[cjm_dashboard]`)
+   - **Registration Page**: Applicant signup (`[cjm_registration_form]`)
+3. Customize page titles if needed
+4. Create/Update pages with custom names
+5. View current page locations and links
 
 ---
 

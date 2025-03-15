@@ -5,63 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.2] - 2024-03-21
-
-### Enhanced
-- Consolidated all plugin functions under a single admin menu
-- Improved admin interface organization with logical submenu structure
-- Better navigation flow between plugin features
-- Cleaner admin menu hierarchy
-
-## [1.0.1] - 2024-03-21
+## [1.0.2] - 2024-03-13
 
 ### Added
-- Phone number field in registration form with E.164 format support
-- Country code selection with flags and search functionality
-- Default country code setting in admin panel
-- Comprehensive country list with 100+ countries and their flags
-- Phone number validation in E.164 format
-- Testing mode toggle in admin settings
+- Automatic page creation during plugin activation
+- Page management interface in Settings
+- Testing mode toggle for development
+- Phone number validation with country codes
+- Enhanced country code selection with flags
 
-### Enhanced
-- Improved registration form UI with better validation
-- Added country flags and names to dropdown selections
-- Enhanced phone number input validation and formatting
-- Updated settings page with country code configuration
-- Improved form styling with responsive design
-- Added descriptive tooltips for phone number format
-- Enhanced error messaging for phone validation
-- Added real-time phone number formatting
-- Improved accessibility for country selection
+### Changed
+- Improved plugin initialization process
+- Updated documentation for automatic page creation
+- Streamlined settings interface
+- Enhanced error handling and validation
 
 ### Fixed
-- Phone number validation edge cases
-- Country code dropdown mobile responsiveness
-- Form submission validation for phone numbers
-- Error message display formatting
+- Plugin initialization callback issues
+- Post type registration and menu structure
+- Phone number validation and storage
+- Various linting and compatibility issues
 
-### Security
-- Added sanitization for phone number inputs
-- Enhanced validation for country code selection
-- Added proper escaping for phone number display
-
-## [1.0.0] - 2024-03-20
+## [1.0.1] - 2024-03-12
 
 ### Added
-- Initial release of WordPress Job Application & Evaluation System
-- Job post management with rich-text editor
-- Candidate portal with secure resume uploads
-- Custom evaluation sheets with scoring logic
-- Role-based access control (HR/Interviewer/Applicant)
-- CSV exports and automatic data retention
-- reCAPTCHA integration
-- Email notifications system
-- Custom fields for job posts
-- Bulk actions for applications
-- Email templates customization
-- API endpoints for integration
-- WP-CLI commands for management
-- Multilingual support
+- Phone number field with country code selection
+- E.164 format validation for phone numbers
+- Country code dropdown with flags
+
+### Changed
+- Updated user registration process
+- Enhanced form validation
+- Improved error messages
+
+### Fixed
+- Various bug fixes and improvements
+- Documentation updates
+
+## [1.0.0] - 2024-03-11
+
+### Added
+- Initial release
+- Job posting management
+- Application submission system
+- Evaluation workflow
+- User role management
+- Basic reporting features
 
 ### Security
 - Strict MIME type validation for file uploads

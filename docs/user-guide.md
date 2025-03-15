@@ -1,5 +1,24 @@
 # User Guide
 
+## Initial Setup
+1. **Plugin Activation**
+   - Required pages are created automatically
+   - Default settings are configured
+   - User roles are established
+
+2. **Page Management**
+   - Access via Settings → Plugin Pages
+   - View existing page locations
+   - Customize page titles
+   - Create/Update pages as needed
+   - Monitor page status and links
+
+3. **Configuration**
+   - Set resume size limit (default: 2MB)
+   - Adjust data retention period (default: 365 days)
+   - Enable/disable testing mode
+   - Configure default settings
+
 ## Managing Job Listings
 1. **Create Jobs**: Navigate to Jobs → Add New
 2. **Add Details**: Fill in job title, description, and location

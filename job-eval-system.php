@@ -37,6 +37,10 @@ function cjm_activate_plugin() {
     // Initialize default settings
     update_option('cjm_resume_size_limit', 2); // MB
     update_option('cjm_data_retention', 365); // Days
+    update_option('cjm_testing_mode', 0); // Testing mode disabled by default
+
+    // Create default pages
+    CJM\Plugin::instance()->create_plugin_pages();
 }
 
 /**

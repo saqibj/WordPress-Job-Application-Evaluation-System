@@ -35,7 +35,7 @@ class AdminMenu {
             \__('Jobs', 'job-eval-system'),
             \__('Jobs', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=job',
+            'edit.php?post_type=cjm_job',
             null
         );
 
@@ -44,7 +44,7 @@ class AdminMenu {
             \__('Applications', 'job-eval-system'),
             \__('Applications', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=application',
+            'edit.php?post_type=cjm_application',
             null
         );
 
@@ -53,7 +53,7 @@ class AdminMenu {
             \__('Evaluations', 'job-eval-system'),
             \__('Evaluations', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=evaluation',
+            'edit.php?post_type=cjm_evaluation',
             null
         );
 

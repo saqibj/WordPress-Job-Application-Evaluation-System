@@ -1,5 +1,7 @@
 # 📘 WordPress Job Application & Evaluation System  
+
 **User Guide & Workflow Manual**  
+**Version: 1.0.2**
 
 ---
 
@@ -36,7 +38,7 @@ This plugin transforms WordPress into a complete recruitment management system. 
    - *Interviewer Dashboard*: Add `[cjm_dashboard]` shortcode  
 
 ### 2. Configure Settings  
-1. Navigate to **Jobs → Settings**  
+1. Navigate to **Job Applications → Settings**  
 2. Configure:  
    - **reCAPTCHA Keys** (required for application forms)  
    - **Resume Size Limit** (default: 2MB)  
@@ -48,13 +50,23 @@ This plugin transforms WordPress into a complete recruitment management system. 
 ## 📋 Core Workflows  
 
 ### A. Job Management (HR)  
-1. **Create a Job**:  
-   - Go to *Jobs → Add New*  
+1. **Access Admin Area**:
+   - All plugin functions are now consolidated under the "Job Applications" menu
+   - Navigate using the logical submenu structure:
+     - Dashboard: Overview and quick stats
+     - Jobs: Manage job listings
+     - Applications: Review submissions
+     - Evaluations: View assessments
+     - Reports: Analytics and exports
+     - Settings: Configure plugin options
+
+2. **Create a Job**:  
+   - Go to *Job Applications → Jobs → Add New*  
    - Add title, description, and metadata (location, salary, etc.)  
    - Publish to display on the jobs page  
 
-2. **Manage Applications**:  
-   - View submissions under *Applications*  
+3. **Manage Applications**:  
+   - View submissions under *Job Applications → Applications*  
    - Filter by status: `New`, `In Review`, `Archived`  
    - Assign interviewers via bulk actions  
 
@@ -79,6 +91,7 @@ This plugin transforms WordPress into a complete recruitment management system. 
 ### C. Evaluation Workflow (Interviewer)  
 1. **Access Dashboard**:  
    - Log in and visit the page with `[cjm_dashboard]`  
+   - Or access via *Job Applications → Evaluations* in admin area
 
 2. **Evaluate Candidates**:  
    - Click *Evaluate* next to an assigned candidate  
@@ -96,11 +109,18 @@ This plugin transforms WordPress into a complete recruitment management system. 
 ---
 
 ### D. Reporting & Analytics (HR)  
-1. **Export Data**:  
-   - From *Applications*, select candidates → *Export to CSV*  
+1. **Access Reports**:
+   - Navigate to *Job Applications → Reports*
+   - Choose from available report types:
+     - Application Statistics
+     - Evaluation Analytics
+     - Export Data
+
+2. **Export Data**:  
+   - From *Job Applications → Applications*, select candidates → *Export to CSV*  
    - Includes: Candidate info, scores, recommendation  
 
-2. **View Statistics**:  
+3. **View Statistics**:  
    - Average scores per job role  
    - Evaluation completion rates  
    - Candidate comparison charts  

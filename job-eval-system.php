@@ -3,7 +3,7 @@
  * Plugin Name: WordPress Job Application & Evaluation System
  * Plugin URI: https://github.com/saqibj/WordPress-Job-Application-Evaluation-System
  * Description: Comprehensive recruitment management system with job postings, candidate applications, and evaluation workflows.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Saqib Jawaid
  * Author URI: https://github.com/saqibj
  * License: GPL-3.0
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define core constants
-define('CJM_PLUGIN_VERSION', '1.0.1');
+define('CJM_PLUGIN_VERSION', '1.0.2');
 define('CJM_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('CJM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CJM_TEMPLATE_PATH', CJM_PLUGIN_PATH . 'templates/');

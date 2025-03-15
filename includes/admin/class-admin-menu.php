@@ -4,93 +4,87 @@ namespace CJM\Admin;
 defined('ABSPATH') || exit;
 
 class AdminMenu {
-    private static $instance;
-
     public static function init() {
-        if (!isset(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
+        \add_action('admin_menu', [__CLASS__, 'register_menus']);
     }
 
-    private function __construct() {
-        add_action('admin_menu', [$this, 'register_menus']);
-    }
-
-    public function register_menus() {
+    public static function register_menus() {
         // Main Menu
-        add_menu_page(
-            __('Job Applications', 'job-eval-system'),
-            __('Job Applications', 'job-eval-system'),
+        \add_menu_page(
+            \__('Job Applications', 'job-eval-system'),
+            \__('Job Applications', 'job-eval-system'),
             'manage_options',
-            'job-eval-system',
-            [$this, 'render_dashboard'],
-            'dashicons-businessperson',
-            30
+            'job-applications',
+            [__CLASS__, 'render_dashboard'],
+            'dashicons-businessman',
+            25
         );
 
         // Submenus
-        add_submenu_page(
-            'job-eval-system',
-            __('Dashboard', 'job-eval-system'),
-            __('Dashboard', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Dashboard', 'job-eval-system'),
+            \__('Dashboard', 'job-eval-system'),
             'manage_options',
-            'job-eval-system',
-            [$this, 'render_dashboard']
+            'job-applications',
+            [__CLASS__, 'render_dashboard']
         );
 
-        add_submenu_page(
-            'job-eval-system',
-            __('Jobs', 'job-eval-system'),
-            __('Jobs', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Jobs', 'job-eval-system'),
+            \__('Jobs', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=cjm_job'
+            'edit.php?post_type=job',
+            null
         );
 
-        add_submenu_page(
-            'job-eval-system',
-            __('Applications', 'job-eval-system'),
-            __('Applications', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Applications', 'job-eval-system'),
+            \__('Applications', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=cjm_application'
+            'edit.php?post_type=application',
+            null
         );
 
-        add_submenu_page(
-            'job-eval-system',
-            __('Evaluations', 'job-eval-system'),
-            __('Evaluations', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Evaluations', 'job-eval-system'),
+            \__('Evaluations', 'job-eval-system'),
             'manage_options',
-            'edit.php?post_type=cjm_evaluation'
+            'edit.php?post_type=evaluation',
+            null
         );
 
-        add_submenu_page(
-            'job-eval-system',
-            __('Reports', 'job-eval-system'),
-            __('Reports', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Reports', 'job-eval-system'),
+            \__('Reports', 'job-eval-system'),
             'manage_options',
-            'cjm-reports',
-            [$this, 'render_reports']
+            'job-applications-reports',
+            [__CLASS__, 'render_reports']
         );
 
-        add_submenu_page(
-            'job-eval-system',
-            __('Settings', 'job-eval-system'),
-            __('Settings', 'job-eval-system'),
+        \add_submenu_page(
+            'job-applications',
+            \__('Settings', 'job-eval-system'),
+            \__('Settings', 'job-eval-system'),
             'manage_options',
-            'cjm-settings',
-            [$this, 'render_settings']
+            'job-applications-settings',
+            [__CLASS__, 'render_settings']
         );
     }
 
-    public function render_dashboard() {
+    public static function render_dashboard() {
         require_once CJM_PLUGIN_PATH . 'admin/views/dashboard.php';
     }
 
-    public function render_reports() {
+    public static function render_reports() {
         require_once CJM_PLUGIN_PATH . 'admin/views/reports.php';
     }
 
-    public function render_settings() {
+    public static function render_settings() {
         require_once CJM_PLUGIN_PATH . 'admin/views/settings.php';
     }
 } 

@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New database tables for skills and previous jobs
 - Foreign key constraints for data integrity
 - Additional indexes for improved query performance
+- Comprehensive uninstall functionality
 
 ### Changed
 - Improved form layout and styling
@@ -31,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optimized table structure for better performance
 - Streamlined user experience
 - Improved accessibility
+- Enhanced plugin deactivation process
+- Improved table drop order for proper cleanup
 
 ### Security
 - Enhanced file upload validation
@@ -38,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved data sanitization
 - Added foreign key constraints for referential integrity
 - Standardized database field lengths for better security
+- Secure cleanup of sensitive data during uninstall
 
 ### Database
 - Added `cjm_previous_jobs` table for work history
@@ -47,6 +51,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optimized indexes for common queries
 - Standardized column naming conventions
 - Improved data type definitions
+- Clean removal of all tables during uninstall
+- Fixed table drop order to respect foreign key constraints
+
+### Fixed
+- Plugin uninstallation issues
+- Temporary file cleanup
+- Database cleanup during uninstall
+- Role and capability cleanup
+- Fatal error during plugin activation
+- Database table drop order issues
+- Plugin page creation access issue
 
 ## [1.0.2] - 2024-03-13
 

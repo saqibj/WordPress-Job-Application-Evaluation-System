@@ -99,10 +99,16 @@ final class Plugin
     public function init_components()
     {
         // Initialize shortcodes
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-registration-form.php';
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-application-form.php';
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-edit-application.php';
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-jobs-shortcode.php';
+        require_once CJM_PLUGIN_PATH . 'includes/shortcodes/class-dashboard.php';
+
         new Shortcodes\RegistrationForm();
         new Shortcodes\ApplicationForm();
         new Shortcodes\EditApplication();
-        new Shortcodes\JobsList();
+        new Shortcodes\JobsShortcode();
         new Shortcodes\Dashboard();
 
         // Initialize post types
@@ -113,7 +119,6 @@ final class Plugin
         // Initialize admin components if in admin
         if (\is_admin()) {
             new Admin\AdminMenu();
-            new Admin\Settings();
         }
 
         // Enqueue scripts and styles
@@ -181,7 +186,7 @@ final class Plugin
         \flush_rewrite_rules();
 
         // Create plugin pages
-        $this->create_plugin_pages();
+        self::create_plugin_pages();
     }
 
     public function deactivate() {
@@ -258,48 +263,48 @@ final class Plugin
     /**
      * Create required plugin pages
      */
-    private function create_plugin_pages() {
+    public static function create_plugin_pages() {
         $pages = [
             'cjm_jobs_page' => [
-                'title' => __('Jobs', 'job-eval-system'),
+                'title' => \__('Jobs', 'job-eval-system'),
                 'content' => '[cjm_jobs]'
             ],
             'cjm_applications_page' => [
-                'title' => __('My Applications', 'job-eval-system'),
+                'title' => \__('My Applications', 'job-eval-system'),
                 'content' => '[cjm_my_applications]'
             ],
             'cjm_edit_application_page' => [
-                'title' => __('Edit Application', 'job-eval-system'),
+                'title' => \__('Edit Application', 'job-eval-system'),
                 'content' => '[cjm_edit_application]'
             ],
             'cjm_dashboard_page' => [
-                'title' => __('Interviewer Dashboard', 'job-eval-system'),
+                'title' => \__('Interviewer Dashboard', 'job-eval-system'),
                 'content' => '[cjm_dashboard]'
             ],
             'cjm_registration_page' => [
-                'title' => __('Register', 'job-eval-system'),
+                'title' => \__('Register', 'job-eval-system'),
                 'content' => '[cjm_registration_form]'
             ]
         ];
 
         foreach ($pages as $option_name => $page_data) {
-            $existing_page_id = get_option($option_name);
+            $existing_page_id = \get_option($option_name);
             
             // Skip if page already exists
-            if ($existing_page_id && get_post($existing_page_id)) {
+            if ($existing_page_id && \get_post($existing_page_id)) {
                 continue;
             }
 
             // Create page
-            $page_id = wp_insert_post([
+            $page_id = \wp_insert_post([
                 'post_title' => $page_data['title'],
                 'post_content' => $page_data['content'],
                 'post_status' => 'publish',
                 'post_type' => 'page'
             ]);
 
-            if (!is_wp_error($page_id)) {
-                update_option($option_name, $page_id);
+            if (!\is_wp_error($page_id)) {
+                \update_option($option_name, $page_id);
             }
         }
     }

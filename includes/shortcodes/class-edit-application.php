@@ -3,9 +3,12 @@ namespace CJM\Shortcodes;
 
 defined('ABSPATH') || exit;
 
+/**
+ * Edit Application shortcode handler
+ */
 class EditApplication {
     public function __construct() {
-        add_shortcode('cjm_edit_application', [$this, 'render_form']);
+        add_shortcode('cjm_edit_application', [$this, 'render']);
         add_action('wp_ajax_cjm_edit_application', [$this, 'handle_edit']);
         add_action('init', [$this, 'add_rewrite_rules']);
         add_filter('query_vars', [$this, 'add_query_vars']);
@@ -24,16 +27,28 @@ class EditApplication {
         return $vars;
     }
 
-    public function render_form() {
+    /**
+     * Render edit application form
+     */
+    public function render() {
         if (!is_user_logged_in()) {
             return sprintf(
-                '<p>%s</p>',
-                esc_html__('You must be logged in to edit applications.', 'job-eval-system')
+                '<p>%s <a href="%s">%s</a></p>',
+                esc_html__('Please log in to edit your application.', 'job-eval-system'),
+                esc_url(wp_login_url(get_permalink())),
+                esc_html__('Log In', 'job-eval-system')
             );
         }
 
+        // Verify if user has an application to edit
+        $application_id = isset($_GET['id']) ? absint($_GET['id']) : 0;
+        if (!$application_id) {
+            return '<p>' . esc_html__('No application specified.', 'job-eval-system') . '</p>';
+        }
+
+        // Load template
         ob_start();
-        include CJM_PLUGIN_PATH . 'templates/applications/edit-application.php';
+        include CJM_TEMPLATE_PATH . 'applications/edit-application.php';
         return ob_get_clean();
     }
 

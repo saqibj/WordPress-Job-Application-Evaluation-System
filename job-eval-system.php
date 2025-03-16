@@ -31,6 +31,55 @@ register_activation_hook(__FILE__, 'cjm_activate_plugin');
 register_deactivation_hook(__FILE__, 'cjm_deactivate_plugin');
 
 /**
+ * Create required plugin pages
+ */
+function cjm_create_plugin_pages() {
+    $pages = [
+        'cjm_jobs_page' => [
+            'title' => __('Jobs', 'job-eval-system'),
+            'content' => '[cjm_jobs]'
+        ],
+        'cjm_applications_page' => [
+            'title' => __('My Applications', 'job-eval-system'),
+            'content' => '[cjm_my_applications]'
+        ],
+        'cjm_edit_application_page' => [
+            'title' => __('Edit Application', 'job-eval-system'),
+            'content' => '[cjm_edit_application]'
+        ],
+        'cjm_dashboard_page' => [
+            'title' => __('Interviewer Dashboard', 'job-eval-system'),
+            'content' => '[cjm_dashboard]'
+        ],
+        'cjm_registration_page' => [
+            'title' => __('Register', 'job-eval-system'),
+            'content' => '[cjm_registration_form]'
+        ]
+    ];
+
+    foreach ($pages as $option_name => $page_data) {
+        $existing_page_id = get_option($option_name);
+        
+        // Skip if page already exists
+        if ($existing_page_id && get_post($existing_page_id)) {
+            continue;
+        }
+
+        // Create page
+        $page_id = wp_insert_post([
+            'post_title' => $page_data['title'],
+            'post_content' => $page_data['content'],
+            'post_status' => 'publish',
+            'post_type' => 'page'
+        ]);
+
+        if (!is_wp_error($page_id)) {
+            update_option($option_name, $page_id);
+        }
+    }
+}
+
+/**
  * Plugin activation handler
  */
 function cjm_activate_plugin() {
@@ -43,7 +92,10 @@ function cjm_activate_plugin() {
     update_option('cjm_testing_mode', 0); // Testing mode disabled by default
 
     // Create default pages
-    CJM\Plugin::instance()->create_plugin_pages();
+    cjm_create_plugin_pages();
+
+    // Clear rewrite rules
+    flush_rewrite_rules();
 }
 
 /**
@@ -52,6 +104,16 @@ function cjm_activate_plugin() {
 function cjm_deactivate_plugin() {
     // Clear scheduled tasks
     wp_clear_scheduled_hook('cjm_daily_cleanup');
+    
+    // Clear rewrite rules
+    flush_rewrite_rules();
+    
+    // Clean temporary files
+    $upload_dir = wp_upload_dir();
+    $temp_dir = trailingslashit($upload_dir['basedir']) . 'job-eval-system/temp';
+    if (is_dir($temp_dir)) {
+        array_map('unlink', glob("$temp_dir/*.*"));
+    }
 }
 
 // Autoload classes

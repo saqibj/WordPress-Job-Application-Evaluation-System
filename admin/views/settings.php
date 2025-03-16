@@ -10,13 +10,7 @@ if (isset($_POST['cjm_save_settings']) && check_admin_referer('cjm_settings_nonc
     
     // Handle page creation/update
     if (isset($_POST['create_pages']) && $_POST['create_pages'] === '1') {
-        $page_titles = [
-            'jobs' => sanitize_text_field($_POST['page_title_jobs']),
-            'apply' => sanitize_text_field($_POST['page_title_apply']),
-            'dashboard' => sanitize_text_field($_POST['page_title_dashboard']),
-            'registration' => sanitize_text_field($_POST['page_title_registration'])
-        ];
-        CJM\Plugin::instance()->create_plugin_pages($page_titles);
+        \CJM\Plugin::create_plugin_pages();
         add_settings_error('cjm_settings', 'pages_created', __('Plugin pages have been created successfully.', 'job-eval-system'), 'success');
     }
 }

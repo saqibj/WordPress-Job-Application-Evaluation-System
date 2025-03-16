@@ -7,12 +7,12 @@ class Applications
 {
     public function __construct()
     {
-        add_action('init', [$this, 'register_post_type']);
-        add_filter('manage_cjm_application_posts_columns', [$this, 'custom_columns']);
-        add_action('manage_cjm_application_posts_custom_column', [$this, 'column_content'], 10, 2);
-        add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
-        add_action('save_post_cjm_application', [$this, 'save_application'], 10, 3);
-        add_filter('post_updated_messages', [$this, 'custom_messages']);
+        \add_action('init', [$this, 'register_post_type']);
+        \add_filter('manage_cjm_application_posts_columns', [$this, 'custom_columns']);
+        \add_action('manage_cjm_application_posts_custom_column', [$this, 'column_content'], 10, 2);
+        \add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
+        \add_action('save_post_cjm_application', [$this, 'save_application'], 10, 3);
+        \add_filter('post_updated_messages', [$this, 'custom_messages']);
     }
 
     /**
@@ -21,15 +21,15 @@ class Applications
     public function register_post_type()
     {
         $labels = [
-            'name'                  => _x('Applications', 'Post Type General Name', 'job-eval-system'),
-            'singular_name'         => _x('Application', 'Post Type Singular Name', 'job-eval-system'),
-            'menu_name'             => __('Job Applications', 'job-eval-system'),
-            'all_items'             => __('All Applications', 'job-eval-system'),
-            'view_item'            => __('View Application', 'job-eval-system'),
-            'add_new_item'          => __('Add New Application', 'job-eval-system'),
-            'add_new'              => __('Add New', 'job-eval-system'),
-            'edit_item'             => __('Edit Application', 'job-eval-system'),
-            'search_items'         => __('Search Applications', 'job-eval-system'),
+            'name'                  => \_x('Applications', 'Post Type General Name', 'job-eval-system'),
+            'singular_name'         => \_x('Application', 'Post Type Singular Name', 'job-eval-system'),
+            'menu_name'             => \__('Job Applications', 'job-eval-system'),
+            'all_items'             => \__('All Applications', 'job-eval-system'),
+            'view_item'            => \__('View Application', 'job-eval-system'),
+            'add_new_item'          => \__('Add New Application', 'job-eval-system'),
+            'add_new'              => \__('Add New', 'job-eval-system'),
+            'edit_item'             => \__('Edit Application', 'job-eval-system'),
+            'search_items'         => \__('Search Applications', 'job-eval-system'),
         ];
 
         $capabilities = [
@@ -42,16 +42,16 @@ class Applications
             'read_private_posts'    => 'read_private_cjm_applications',
         ];
 
-        register_post_type('cjm_application', [
-            'label'                => __('Application', 'job-eval-system'),
-            'description'          => __('Job applications with candidate information', 'job-eval-system'),
+        \register_post_type('cjm_application', [
+            'label'                => \__('Application', 'job-eval-system'),
+            'description'          => \__('Job applications with candidate information', 'job-eval-system'),
             'labels'               => $labels,
             'supports'             => ['title'],
             'capability_type'      => 'cjm_application',
             'capabilities'         => $capabilities,
             'public'              => false,
             'show_ui'             => true,
-            'show_in_menu'        => 'edit.php?post_type=cjm_job',
+            'show_in_menu'        => 'job-applications',
             'map_meta_cap'        => true,
             'has_archive'         => false,
             'rewrite'             => false,

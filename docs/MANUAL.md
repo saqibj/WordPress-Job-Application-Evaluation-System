@@ -1,7 +1,7 @@
 # 📘 WordPress Job Application & Evaluation System  
 
 **User Guide & Workflow Manual**  
-**Version: 1.0.2**
+**Version: 1.0.3**
 
 ---
 
@@ -10,10 +10,72 @@ This plugin transforms WordPress into a complete recruitment management system. 
 
 **Key Features**:  
 - Job posting management  
-- Candidate application portal  
+- Comprehensive application forms
+- Education and work history tracking
+- Skills and qualifications assessment
+- Legal compliance and e-signatures
 - Interviewer evaluation dashboard  
 - Automated notifications  
 - CSV exports & reporting  
+
+---
+
+## 📝 Application Form Fields
+
+### 1. Personal Information
+- Full Name (required)
+- Date of Birth
+- Work Authorization Status (required)
+
+### 2. Contact Details
+- Email Address (required)
+- Phone Number with country code (required)
+- LinkedIn/Portfolio URL (optional)
+
+### 3. Education History
+- Highest Degree (required)
+  - High School
+  - Bachelor's
+  - Master's
+  - PhD
+- Institution Name (required)
+
+### 4. Work Experience
+- Employment Type
+  - Full-Time
+  - Part-Time
+  - Contract
+- Previous Jobs
+  - Company Name
+  - Job Title
+  - Start Date
+  - Dynamic entries for multiple positions
+
+### 5. Skills & Qualifications
+- Technical Skills (required)
+  - Predefined options including:
+    - Python, Java, JavaScript
+    - PHP, SQL, Excel
+    - Project Management, Agile
+- Language Proficiency (required)
+  - English (Fluent)
+  - Spanish (Intermediate)
+  - Other options
+
+### 6. Attachments
+- Resume/CV (required)
+  - PDF, DOC, DOCX formats
+  - Size limit configurable
+- Cover Letter (optional)
+  - Same format restrictions as resume
+
+### 7. Legal & Compliance
+- Background Check Consent
+- EEO Self-Identification
+  - Gender options
+  - "Prefer not to say" option
+- Electronic Signature
+- Information Accuracy Certification
 
 ---
 

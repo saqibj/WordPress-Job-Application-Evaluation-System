@@ -1,4 +1,5 @@
 # User Guide
+Version: 1.0.3
 
 ## Initial Setup
 1. **Plugin Activation**
@@ -18,6 +19,42 @@
    - Adjust data retention period (default: 365 days)
    - Enable/disable testing mode
    - Configure default settings
+
+## Application Form Fields
+1. **Personal Information**
+   - Full Name (required)
+   - Date of Birth
+   - Work Authorization (required)
+
+2. **Contact Details**
+   - Email Address (required)
+   - Phone Number with country code (required)
+   - LinkedIn/Portfolio URL
+
+3. **Education History**
+   - Highest Degree (required)
+   - Institution Name (required)
+
+4. **Work Experience**
+   - Employment Type
+   - Previous Jobs (dynamic entries)
+     - Company Name
+     - Job Title
+     - Start Date
+
+5. **Skills & Qualifications**
+   - Technical Skills (required)
+   - Language Proficiency (required)
+
+6. **Attachments**
+   - Resume/CV (required)
+   - Cover Letter (optional)
+
+7. **Legal & Compliance**
+   - Background Check Consent
+   - EEO Self-Identification
+   - Electronic Signature
+   - Information Accuracy Certification
 
 ## Managing Job Listings
 1. **Create Jobs**: Navigate to Jobs → Add New

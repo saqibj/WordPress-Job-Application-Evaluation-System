@@ -98,14 +98,67 @@ final class Plugin
      */
     public function init_components()
     {
-        // Shortcodes
-        new Shortcodes\JobsShortcode();
-        new Shortcodes\ApplicationForm();
-        new Shortcodes\Dashboard();
+        // Initialize shortcodes
         new Shortcodes\RegistrationForm();
+        new Shortcodes\ApplicationForm();
+        new Shortcodes\EditApplication();
+        new Shortcodes\JobsList();
+        new Shortcodes\Dashboard();
 
-        // Frontend
-        new Public\PublicInit();
+        // Initialize post types
+        new PostTypes\Jobs();
+        new PostTypes\Applications();
+        new PostTypes\Evaluations();
+
+        // Initialize admin components if in admin
+        if (\is_admin()) {
+            new Admin\AdminMenu();
+            new Admin\Settings();
+        }
+
+        // Enqueue scripts and styles
+        \add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
+    }
+
+    public function enqueue_assets() {
+        // Existing enqueues...
+
+        // Add application form script
+        \wp_enqueue_script(
+            'cjm-application-form',
+            CJM_PLUGIN_URL . 'public/js/application-form.js',
+            ['jquery'],
+            CJM_PLUGIN_VERSION,
+            true
+        );
+
+        \wp_localize_script('cjm-application-form', 'cjm_i18n', [
+            'company_name' => \__('Company Name', 'job-eval-system'),
+            'job_title' => \__('Job Title', 'job-eval-system'),
+            'start_date' => \__('Start Date', 'job-eval-system'),
+            'remove' => \__('Remove', 'job-eval-system'),
+            'required_field' => \__('This field is required', 'job-eval-system'),
+            'select_one_skill' => \__('Please select at least one technical skill', 'job-eval-system'),
+            'file_too_large' => \sprintf(
+                \__('File size must be less than %sMB', 'job-eval-system'),
+                \get_option('cjm_resume_size_limit', 2)
+            ),
+            'max_resume_size' => \get_option('cjm_resume_size_limit', 2)
+        ]);
+
+        // Add edit application script
+        \wp_enqueue_script(
+            'cjm-edit-application',
+            CJM_PLUGIN_URL . 'public/js/edit-application.js',
+            ['jquery'],
+            CJM_PLUGIN_VERSION,
+            true
+        );
+
+        \wp_localize_script('cjm-edit-application', 'cjm_ajax', [
+            'ajax_url' => \admin_url('admin-ajax.php'),
+            'nonce' => \wp_create_nonce('cjm_edit_application')
+        ]);
     }
 
     public function run()
@@ -126,6 +179,9 @@ final class Plugin
         
         // Clear rewrite rules
         \flush_rewrite_rules();
+
+        // Create plugin pages
+        $this->create_plugin_pages();
     }
 
     public function deactivate() {
@@ -202,48 +258,48 @@ final class Plugin
     /**
      * Create required plugin pages
      */
-    private function create_plugin_pages($page_titles = []) {
-        $default_pages = [
-            'jobs' => [
-                'title' => isset($page_titles['jobs']) ? $page_titles['jobs'] : __('Job Listings', 'job-eval-system'),
-                'content' => '[cjm_jobs]',
-                'option_name' => 'cjm_jobs_page_id'
+    private function create_plugin_pages() {
+        $pages = [
+            'cjm_jobs_page' => [
+                'title' => __('Jobs', 'job-eval-system'),
+                'content' => '[cjm_jobs]'
             ],
-            'apply' => [
-                'title' => isset($page_titles['apply']) ? $page_titles['apply'] : __('Apply for Job', 'job-eval-system'),
-                'content' => '[cjm_apply]',
-                'option_name' => 'cjm_apply_page_id'
+            'cjm_applications_page' => [
+                'title' => __('My Applications', 'job-eval-system'),
+                'content' => '[cjm_my_applications]'
             ],
-            'dashboard' => [
-                'title' => isset($page_titles['dashboard']) ? $page_titles['dashboard'] : __('Interviewer Dashboard', 'job-eval-system'),
-                'content' => '[cjm_dashboard]',
-                'option_name' => 'cjm_dashboard_page_id'
+            'cjm_edit_application_page' => [
+                'title' => __('Edit Application', 'job-eval-system'),
+                'content' => '[cjm_edit_application]'
             ],
-            'registration' => [
-                'title' => isset($page_titles['registration']) ? $page_titles['registration'] : __('Applicant Registration', 'job-eval-system'),
-                'content' => '[cjm_registration_form]',
-                'option_name' => 'cjm_registration_page_id'
+            'cjm_dashboard_page' => [
+                'title' => __('Interviewer Dashboard', 'job-eval-system'),
+                'content' => '[cjm_dashboard]'
+            ],
+            'cjm_registration_page' => [
+                'title' => __('Register', 'job-eval-system'),
+                'content' => '[cjm_registration_form]'
             ]
         ];
 
-        foreach ($default_pages as $slug => $page_data) {
-            // Check if page already exists
-            $existing_page_id = \get_option($page_data['option_name']);
-            if ($existing_page_id && \get_post($existing_page_id)) {
+        foreach ($pages as $option_name => $page_data) {
+            $existing_page_id = get_option($option_name);
+            
+            // Skip if page already exists
+            if ($existing_page_id && get_post($existing_page_id)) {
                 continue;
             }
 
-            // Create the page
-            $page_id = \wp_insert_post([
+            // Create page
+            $page_id = wp_insert_post([
                 'post_title' => $page_data['title'],
                 'post_content' => $page_data['content'],
                 'post_status' => 'publish',
-                'post_type' => 'page',
-                'post_name' => $slug
+                'post_type' => 'page'
             ]);
 
             if (!is_wp_error($page_id)) {
-                \update_option($page_data['option_name'], $page_id);
+                update_option($option_name, $page_id);
             }
         }
     }
@@ -264,32 +320,7 @@ final class Plugin
     }
 
     private function create_tables() {
-        global $wpdb;
-        $charset_collate = $wpdb->get_charset_collate();
-
-        // Applications meta table
-        $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_application_meta (
-            meta_id bigint(20) NOT NULL AUTO_INCREMENT,
-            application_id bigint(20) NOT NULL,
-            meta_key varchar(255) DEFAULT NULL,
-            meta_value longtext,
-            PRIMARY KEY  (meta_id),
-            KEY application_id (application_id),
-            KEY meta_key (meta_key(191))
-        ) $charset_collate;";
-
-        // Evaluations meta table
-        $sql .= "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cjm_evaluation_meta (
-            meta_id bigint(20) NOT NULL AUTO_INCREMENT,
-            evaluation_id bigint(20) NOT NULL,
-            meta_key varchar(255) DEFAULT NULL,
-            meta_value longtext,
-            PRIMARY KEY  (meta_id),
-            KEY evaluation_id (evaluation_id),
-            KEY meta_key (meta_key(191))
-        ) $charset_collate;";
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        \dbDelta($sql);
+        require_once(CJM_PLUGIN_PATH . 'includes/database/schema.php');
+        cjm_create_database_tables();
     }
 }

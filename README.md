@@ -5,9 +5,9 @@
 [![WordPress Compatibility](https://img.shields.io/badge/WordPress-6.0%2B-blue)](https://wordpress.org/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-purple)](https://php.net/)
 [![Code Style](https://img.shields.io/badge/code%20style-WordPress-blue)](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
-[![Version](https://img.shields.io/badge/version-1.0.2-green)](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases)
+[![Version](https://img.shields.io/badge/version-1.0.3-green)](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases)
 
-**Version: 1.0.2**
+**Version: 1.0.3**
 
 A comprehensive recruitment management system for WordPress that streamlines the entire hiring process from job posting to candidate evaluation.
 
@@ -26,8 +26,14 @@ A comprehensive recruitment management system for WordPress that streamlines the
   - Organized job listing page
 
 - **Application System**
-  - User-friendly application forms
-  - Secure resume uploads
+  - Comprehensive application forms
+  - Education history tracking
+  - Work experience management
+  - Technical skills selection
+  - Language proficiency tracking
+  - EEO self-identification
+  - Legal compliance and e-signature
+  - Secure file uploads
   - Phone number validation with country codes
   - Registration system with E.164 format support
 

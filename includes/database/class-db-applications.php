@@ -169,4 +169,9 @@ class Applications
             return false;
         }
     }
+
+    private function create_tables() {
+        require_once(dirname(__FILE__) . '/schema.php');
+        cjm_create_database_tables();
+    }
 }

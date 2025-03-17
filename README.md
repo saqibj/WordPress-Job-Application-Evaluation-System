@@ -13,7 +13,7 @@ A comprehensive recruitment management system for WordPress that streamlines the
 
 📚 [Documentation](docs/) | 📖 [User Manual](docs/MANUAL.md) | 🐛 [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues)
 
-## 🌟 Features
+## 🌟 Key Features
 
 - **Automated Setup**
   - Automatic page creation during activation
@@ -43,90 +43,48 @@ A comprehensive recruitment management system for WordPress that streamlines the
   - Interviewer dashboard
   - Bulk actions support
 
-- **Administration**
-  - Centralized admin menu
-  - Page management interface
-  - Customizable settings
-  - Testing mode for development
+- **Security & Compliance**
+  - Secure file uploads with MIME validation
+  - Role-based access control
+  - GDPR compliant data handling
+  - Automatic data cleanup
 
 ## 🚀 Quick Start
 
-1. Upload and activate the plugin
-2. Plugin automatically creates required pages:
-   - Jobs Listing
-   - Application Form
-   - Interviewer Dashboard
-   - Registration Page
-3. Configure settings in Job Applications → Settings
-4. Start creating job postings!
+1. **Installation**
+   - Upload and activate the plugin
+   - Required pages are automatically created:
+     - Jobs Listing
+     - Application Form
+     - Interviewer Dashboard
+     - Registration Page
 
-## ⚙️ Configuration
+2. **Initial Configuration**
+   - Navigate to *Job Applications → Settings*
+   - Set resume size limit (default: 2MB)
+   - Configure data retention period
+   - Enable testing mode if needed
 
-Access all settings via **Job Applications → Settings**:
+3. **Create Job Postings**
+   - Go to *Job Applications → Jobs → Add New*
+   - Add title, description, and metadata
+   - Publish to make visible on frontend
 
-- Resume size limit
-- Data retention period
-- Testing mode toggle
-- Page management
-- User roles and permissions
+## ⚙️ Configuration Options
+
+| Section            | Key Settings                          |
+|--------------------|---------------------------------------|
+| **General**        | Resume size limit, Data retention     |
+| **Pages**          | Manage plugin-created pages           |
+| **Security**       | File upload validation, Access roles  |
+| **Notifications**  | Email templates, Recipient settings   |
 
 ## 📖 Documentation
 
-- [User Manual](docs/MANUAL.md)
-- [User Guide](docs/user-guide.md)
-- [Changelog](CHANGELOG.md)
-
-## 🔒 Security
-
-- Secure file uploads
-- Role-based access control
-- Input validation and sanitization
-- Phone number format validation
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-## 📝 License
-
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Saqib Jawaid** - *Initial work* - [saqibj](https://github.com/saqibj)
-
-## 🙏 Acknowledgments
-
-- WordPress Plugin Development Team
-- Contributors and testers
-- Open source community
-
-## 🛠️ Usage
-
-### For HR Managers
-- Manage jobs from WordPress admin
-- Track applications with status filters
-- Export evaluations to CSV
-- Bulk assign interviewers
-- Configure email notifications
-- Set up evaluation criteria
-
-### For Interviewers
-1. Access dashboard via `[cjm_dashboard]`
-2. Evaluate candidates using:
-   - 5-point rating system
-   - Customizable criteria
-   - Comments/feedback fields
-3. Submit evaluations automatically saved
-4. View evaluation history
-5. Export individual reports
-
-### For Applicants
-- Browse jobs at `/jobs/`
-- Submit applications with resume
-- Receive email confirmation
-- Track application status
-- View interview feedback
+- [User Manual](docs/MANUAL.md) - Detailed workflow guide
+- [Technical Docs](docs/) - Developer documentation
+- [Changelog](CHANGELOG.md) - Version history
+- [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues) - Bug reports
 
 ## 🧩 Customization
 
@@ -201,28 +159,50 @@ CREATE TABLE wp_cjm_evaluations (
 );
 ```
 
-## 🔒 Security
+## 🤝 Contributing
 
-### File Upload Protection
-- Strict MIME type validation
-- Size limit enforcement (2MB default)
-- Non-executable upload directory
-- Virus scanning integration
-- Secure file naming
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-### Data Security
-- Input sanitization/output escaping
-- Nonce verification on all forms
-- Role capability checks
-- XSS protection
-- CSRF protection
-- SQL injection prevention
+## 📝 License
 
-### Privacy Compliance
-- GDPR compliant
-- Data retention policies
-- Export/delete functionality
-- Privacy policy integration
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Saqib Jawaid** - *Initial work* - [saqibj](https://github.com/saqibj)
+
+## 🙏 
+
+- WordPress Plugin Development Team
+- Contributors and testers
+- Open source community
+
+## 🛠️ Usage
+
+### For HR Managers
+- Manage jobs from WordPress admin
+- Track applications with status filters
+- Export evaluations to CSV
+- Bulk assign interviewers
+- Configure email notifications
+- Set up evaluation criteria
+
+### For Interviewers
+1. Access dashboard via `[cjm_dashboard]`
+2. Evaluate candidates using:
+   - 5-point rating system
+   - Customizable criteria
+   - Comments/feedback fields
+3. Submit evaluations automatically saved
+4. View evaluation history
+5. Export individual reports
+
+### For Applicants
+- Browse jobs at `/jobs/`
+- Submit applications with resume
+- Receive email confirmation
+- Track application status
+- View interview feedback
 
 ## 🤝 Contributing
 

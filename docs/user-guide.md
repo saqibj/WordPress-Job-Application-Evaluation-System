@@ -1,5 +1,5 @@
 # User Guide
-Version: 1.0.3
+Version: 1.0.4
 
 ## Initial Setup
 1. **Plugin Activation**

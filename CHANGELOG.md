@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2024-03-20
+
+### Removed
+- Code attempting to delete .git directory during activation
+
+### Changed
+- Improved build process with git archive verification
+- Added .git/ export-ignore in .gitattributes
+
+### Security
+- Removed potentially dangerous file deletion operations
+
 ## [1.0.3] - 2024-03-14
 
 ### Added
@@ -137,6 +149,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code style checking
 - Development environment setup
 
+[1.0.4]: https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases/tag/v1.0.4
 [1.0.3]: https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases/tag/v1.0.3
 [1.0.2]: https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases/tag/v1.0.2
 [1.0.1]: https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/releases/tag/v1.0.1

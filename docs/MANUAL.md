@@ -1,7 +1,7 @@
 # 📘 WordPress Job Application & Evaluation System  
 
 **User Guide & Workflow Manual**  
-**Version: 1.0.3**
+**Version: 1.0.4**
 
 ---
 

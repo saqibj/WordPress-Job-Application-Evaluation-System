@@ -18,7 +18,15 @@ if (!function_exists('get_option')) {
 // Access WordPress database object
 global $wpdb;
 
+// Add debug logging
+if (!defined('WP_DEBUG_LOG') || !WP_DEBUG_LOG) {
+    define('WP_DEBUG_LOG', true); // Force enable logging during uninstall
+}
+
 try {
+    error_log('Starting uninstall of Job Application System plugin');
+    $debug_info = [];
+
     // Delete all posts of custom post types
     $post_types = ['cjm_job', 'cjm_application', 'cjm_evaluation'];
     foreach ($post_types as $post_type) {
@@ -54,14 +62,19 @@ try {
         'cjm_resume_size_limit',
         'cjm_data_retention',
         'cjm_testing_mode',
+        'cjm_jobs_page_id',
+        'cjm_applications_page_id',
+        'cjm_edit_application_page_id',
+        'cjm_dashboard_page_id',
+        'cjm_registration_page_id',
+        'cjm_db_version',
+        'cjm_installed_time',
+        'cjm_last_cleanup',
         'cjm_jobs_page',
         'cjm_applications_page',
         'cjm_edit_application_page',
         'cjm_dashboard_page',
-        'cjm_registration_page',
-        'cjm_db_version',
-        'cjm_installed_time',
-        'cjm_last_cleanup'
+        'cjm_registration_page'
     ];
 
     // First collect page IDs before deleting options

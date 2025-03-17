@@ -82,7 +82,7 @@ A comprehensive recruitment management system for WordPress that streamlines the
 ## 📖 Documentation
 
 - [User Manual](docs/MANUAL.md) - Detailed workflow guide
-- [Technical Docs](docs/) - Developer documentation
+- [Developer API](docs/developer-api.md) - Technical reference
 - [Changelog](CHANGELOG.md) - Version history
 - [Report Issue](https://github.com/saqibj/WordPress-Job-Application-Evaluation-System/issues) - Bug reports
 

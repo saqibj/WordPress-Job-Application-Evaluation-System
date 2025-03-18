@@ -1,0 +1,18 @@
+class CJM_REST_API {
+    public function register_routes() {
+        register_rest_route('cjm/v1', '/evaluations/(?P<id>\d+)', [
+            'methods' => 'POST',
+            'callback' => [$this, 'submit_evaluation'],
+            'args' => [
+                'id' => [
+                    'validate_callback' => function($param) {
+                        return is_numeric($param);
+                    }
+                ]
+            ],
+            'permission_callback' => function() {
+                return current_user_can('edit_cjm_evaluations');
+            }
+        ]);
+    }
+} 
